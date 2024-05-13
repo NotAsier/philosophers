@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 10:39:36 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/05/13 13:29:11 by aarranz-         ###   ########.fr       */
+/*   Created: 2024/05/09 13:18:49 by aarranz-          #+#    #+#             */
+/*   Updated: 2024/05/13 12:30:14 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
-int	main(int argc, char *argv)
-{
-	if(argc == 5 || argc == 6)
-	{
-		
-	}
-}
+# include <stdlib.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdbool.h>
+
+
+
+#endif // PHILOSOPHERS_H
