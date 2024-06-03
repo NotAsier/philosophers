@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:39:36 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/05/28 13:15:04 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:47:30 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ void	create_philos(t_params *params, t_philo **philo)
 	while (i < params->philo_count)
 	{
 		tmp->id = i + 1;
-		tmp->next = ft_lstnew(NULL);
+		pthread_mutex_init(&tmp->fork, NULL);
+		tmp->params = params;
+		if (i + 1 == params->philo_count)
+			tmp->next = *philo;
+		else
+			tmp->next = ft_lstnew(NULL);
 		tmp = tmp->next;
 		i++;
 	}
-	tmp->next = *philo;
 }
 
 void	init_struct(t_params *params)
@@ -58,6 +62,7 @@ int	main(int argc, char **argv)
 {
     t_params	*params;
 	t_philo		*philo;
+	int 		i;
 
 	params = (t_params *)malloc(sizeof(t_params));
 	philo = NULL;
@@ -67,19 +72,28 @@ int	main(int argc, char **argv)
 		parse_args(params, argv);
 		create_philos(params, &philo);
 	}
-	while(philo->next)
+	i = 0;
+	while(i < params->philo_count)
 	{
-		printf("%d\n", philo->id);
+		pthread_create(&philo->thread, NULL, routine, philo);
 		philo = philo->next;
+		i++;
+	}
+	i = 0;
+	while(i < params->philo_count)
+	{
+		pthread_join(philo->thread, NULL);
+		philo = philo->next;
+		i++;
 	}
 }
 
-	pthread_t	philo->thread; // Variable hilo
+	/*pthread_t	philo->thread; // Variable hilo
 	pthread_create(&philo->thread, NULL, routine, current); // Crea el hilo y ejecuta la función routine con argumento current	
 	pthread_join(philo->thread, NULL); // Espera a que el hilo en si termine
 	
 	mutex_t		fork; // Variable mutex
 	pthread_mutex_init(&fork); // Inicializa el mutex (desbloqueado por defecto)
 	pthread_mutex_lock(philo->fork); // Bloquea el mutex para evitar que otro hilo lo acceda (si otro hilo lo tiene bloqueado, se queda esperando a que se desbloquee)
-	pthread_mutex_unlock(fork); // Desbloquea el mutex, permitiendo a otro hilo agarrarlo
+	pthread_mutex_unlock(fork); // Desbloquea el mutex, permitiendo a otro hilo agarrarlo*/
 	
