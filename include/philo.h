@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:18:49 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/03 12:19:49 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:49:45 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <sys/time.h>
 
 typedef struct s_params
 {
@@ -26,6 +27,7 @@ typedef struct s_params
     int		eat;
     int		sleep;
     int     eat_count;
+	long	time;
 }			t_params;
 
 typedef struct s_philo
@@ -41,7 +43,12 @@ int			philo_atoi(char *str);
 void		create_philos(t_params *params, t_philo **philo);
 void		init_struct(t_params *params);
 void		parse_args(t_params *params, char **argv);
+void    	philos_threads(t_params *params, t_philo  **philo);
 t_philo		*ft_lstnew(void	*content);
 void		*routine(void *arg);
+void		philo_eat(t_philo *philo);
+long		ft_time(void);
+void		ft_usleep(unsigned int ms);
+void    	print_p(t_philo *philo, int id);
 
 #endif // PHILOSOPHERS_H
