@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:18:49 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/06 12:49:45 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:44:28 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct s_params
 {
 	int		philo_count;
     int     die;
-    int		eat;
+   	int		eat;
     int		sleep;
     int     eat_count;
-	long	time;
+	long	start;
 }			t_params;
 
 typedef struct s_philo
@@ -47,6 +47,7 @@ void    	philos_threads(t_params *params, t_philo  **philo);
 t_philo		*ft_lstnew(void	*content);
 void		*routine(void *arg);
 void		philo_eat(t_philo *philo);
+void		philo_sleep(t_philo *philo);
 long		ft_time(void);
 void		ft_usleep(unsigned int ms);
 void    	print_p(t_philo *philo, int id);
