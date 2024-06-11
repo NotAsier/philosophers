@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:18:49 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/10 13:44:28 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:51:08 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int					id;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
+	long				eat_start;
 	struct s_params		*params;
 	struct s_philo		*next;
 }			t_philo;
@@ -51,5 +52,6 @@ void		philo_sleep(t_philo *philo);
 long		ft_time(void);
 void		ft_usleep(unsigned int ms);
 void    	print_p(t_philo *philo, int id);
+void 		watch(t_philo *philo);
 
 #endif // PHILOSOPHERS_H

@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:39:36 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/10 12:17:11 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:32:08 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 		parse_args(params, argv);
 		create_philos(params, &philo);
 		philos_threads(params, &philo);
+		
 	}
 }
 

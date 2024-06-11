@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:22:33 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/10 13:44:42 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:46:28 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ void    philos_threads(t_params *params, t_philo  **philo)
 {
     int i;
     t_philo *current;
-    current = *philo;
+	pthread_t	watcher;
 
     i = 0;
+    current = *philo;
 	while(i < params->philo_count)
 	{
 		pthread_create(&current->thread, NULL, routine, current);
 		current = current->next;
 		i++;
 	}
+	pthread_create(&watcher, NULL, watch, current);
 	i = 0;
 	while(i < params->philo_count)
 	{
@@ -75,4 +77,5 @@ void    philos_threads(t_params *params, t_philo  **philo)
 		current = current->next;
 		i++;
 	}
+	pthread_join(watcher, NULL);
 }
