@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:18:49 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/11 12:51:08 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:08:46 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_params
    	int		eat;
     int		sleep;
     int     eat_count;
+	int		dead;
 	long	start;
 }			t_params;
 
@@ -52,6 +53,6 @@ void		philo_sleep(t_philo *philo);
 long		ft_time(void);
 void		ft_usleep(unsigned int ms);
 void    	print_p(t_philo *philo, int id);
-void 		watch(t_philo *philo);
+void 		*watch(void *arg);
 
 #endif // PHILOSOPHERS_H
