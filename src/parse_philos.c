@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:22:33 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/12 11:09:22 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:39:33 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	create_philos(t_params *params, t_philo **philo)
 {
 	int		i;
 	t_philo	*tmp;
-	
+
 	i = 0;
-	
 	tmp = ft_lstnew(NULL);
 	*philo = tmp;
 	while (i < params->philo_count)
@@ -38,6 +37,7 @@ void	create_philos(t_params *params, t_philo **philo)
 void	init_struct(t_params *params)
 {
 	params->philo_count = 0;
+	pthread_mutex_init(&params->print, NULL);
 	params->die = 0;
 	params->eat = 0;
 	params->sleep = 0;
@@ -52,19 +52,23 @@ void	parse_args(t_params *params, char **argv)
 	params->die = philo_atoi(argv[2]);
 	params->eat = philo_atoi(argv[3]);
 	params->sleep = philo_atoi(argv[4]);
-	if(argv[5])
+	if (argv[5])
+	{
 		params->eat_count = philo_atoi(argv[5]);
+		if (philo_atoi(argv[5]) < 1)
+			exit(0);
+	}
 }
 
-void    philos_threads(t_params *params, t_philo  **philo)
+void	philos_threads(t_params *params, t_philo **philo)
 {
-    int i;
-    t_philo *current;
+	int			i;
+	t_philo		*current;
 	pthread_t	watcher;
 
-    i = 0;
-    current = *philo;
-	while(i < params->philo_count)
+	i = 0;
+	current = *philo;
+	while (i < params->philo_count)
 	{
 		pthread_create(&current->thread, NULL, routine, current);
 		current = current->next;
@@ -72,7 +76,7 @@ void    philos_threads(t_params *params, t_philo  **philo)
 	}
 	pthread_create(&watcher, NULL, watch, current);
 	i = 0;
-	while(i < params->philo_count)
+	while (i < params->philo_count)
 	{
 		pthread_join(current->thread, NULL);
 		current = current->next;
