@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:42:04 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:43:45 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:55:00 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ long		ft_time(void);
 void		ft_usleep(unsigned int ms);
 void		print_p(t_philo *philo, int id);
 void		*watch(void *arg);
+void		free_philos(t_philo **head);
+void		free_params(t_params *params);
 
 #endif // PHILO_H

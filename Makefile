@@ -6,14 +6,14 @@
 #    By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 10:38:23 by aarranz-          #+#    #+#              #
-#    Updated: 2024/06/12 10:34:30 by aarranz-         ###   ########.fr        #
+#    Updated: 2024/06/13 14:54:19 by aarranz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	philosophers
 SRC_PATH	:=	src
 OBJ_DIR		:=	obj
-SOURCES		:=	philo.c atoi.c lst_utils.c routine.c time.c print_actions.c parse_philos.c watcher.c
+SOURCES		:=	philo.c atoi.c lst_utils.c routine.c time.c print_actions.c parse_philos.c watcher.c free.c
 OBJS		:=	$(SOURCES:%.c=$(OBJ_DIR)/%.o)
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -I./include -g3 #-fsanitize=address
