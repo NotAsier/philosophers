@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:22:33 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:39:33 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:56:35 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ void	philos_threads(t_params *params, t_philo **philo)
 		i++;
 	}
 	pthread_detach(watcher);
+	free_philos(philo);
+	free_params(params);
 }

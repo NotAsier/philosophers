@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 10:39:36 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 15:03:07 by aarranz-         ###   ########.fr       */
+/*   Created: 2024/06/13 14:48:30 by aarranz-          #+#    #+#             */
+/*   Updated: 2024/06/13 14:58:40 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	free_philos(t_philo **head)
 {
-	t_params	*params;
-	t_philo		*philo;
+	t_philo	*current;
+	t_philo	*next;
 
-	params = (t_params *)malloc(sizeof(t_params));
-	philo = NULL;
-	if (argc == 5 || argc == 6)
+	current = *head;
+	while (current)
 	{
-		init_struct(params);
-		parse_args(params, argv);
-		create_philos(params, &philo);
-		if (params->philo_count == 1)
-			the_choosen_one();
-		philos_threads(params, &philo);
+		next = current->next;
+		pthread_mutex_destroy(&current->fork);
+		free(current);
+		current = next;
 	}
+}
+
+void	free_params(t_params *params)
+{
+	pthread_mutex_destroy(&params->print);
+	free(params);
 }
