@@ -6,7 +6,7 @@
 #    By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 10:38:23 by aarranz-          #+#    #+#              #
-#    Updated: 2024/06/13 14:54:19 by aarranz-         ###   ########.fr        #
+#    Updated: 2024/06/14 11:42:23 by aarranz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ $(NAME): $(OBJS)
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c | $(OBJ_DIR)
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:

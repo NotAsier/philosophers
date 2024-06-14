@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:42:04 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:55:00 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:09:18 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef struct s_params
 	int					eat;
 	int					sleep;
 	pthread_mutex_t		print;
-	int					eat_count;
+	int					eat_max;
+	int					philos_eaten;
 	int					dead;
 	long				start;
 }			t_params;
@@ -57,5 +58,7 @@ void		print_p(t_philo *philo, int id);
 void		*watch(void *arg);
 void		free_philos(t_philo **head);
 void		free_params(t_params *params);
+void		the_choosen_one(t_philo **philo);
+void		*one_case(void *arg);
 
 #endif // PHILO_H

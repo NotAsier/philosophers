@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:48:30 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:58:40 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:49:12 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ void	free_philos(t_philo **head)
 {
 	t_philo	*current;
 	t_philo	*next;
+	int		i;
+	int		philo_count;
 
 	current = *head;
-	while (current)
+	i = 0;
+	philo_count = current->params->philo_count;
+	while (i < philo_count)
 	{
 		next = current->next;
 		pthread_mutex_destroy(&current->fork);
 		free(current);
 		current = next;
+		i++;
 	}
 }
 
