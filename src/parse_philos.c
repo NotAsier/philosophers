@@ -6,7 +6,7 @@
 /*   By: aarranz- <aarranz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:22:33 by aarranz-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:56:35 by aarranz-         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:20:27 by aarranz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	init_struct(t_params *params)
 	params->die = 0;
 	params->eat = 0;
 	params->sleep = 0;
-	params->eat_count = 0;
+	params->eat_max = 0;
+	params->philos_eaten = 0;
 	params->dead = 0;
-	params->start = ft_time();
 }
 
 void	parse_args(t_params *params, char **argv)
@@ -54,7 +54,7 @@ void	parse_args(t_params *params, char **argv)
 	params->sleep = philo_atoi(argv[4]);
 	if (argv[5])
 	{
-		params->eat_count = philo_atoi(argv[5]);
+		params->eat_max = philo_atoi(argv[5]);
 		if (philo_atoi(argv[5]) < 1)
 			exit(0);
 	}
@@ -68,6 +68,7 @@ void	philos_threads(t_params *params, t_philo **philo)
 
 	i = 0;
 	current = *philo;
+	current->params->start = ft_time();
 	while (i < params->philo_count)
 	{
 		pthread_create(&current->thread, NULL, routine, current);
